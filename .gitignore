@@ -1,0 +1,9 @@
+*.png
+*.log
+*.pyc
+.idea
+.DS_Store
+*__pycache__/
+src/secret/
+*sqlite.db
+*bot-settings
