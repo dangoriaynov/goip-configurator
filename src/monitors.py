@@ -113,8 +113,6 @@ class GoipMonitor:
             reset_daily_values()  # set default values for the daily status
         else:
             log.info("[GoipMonitor] Recent restart - do not reset daily calls duration.")
-
-    def send_greenting(self):
         if passed_more_that_sec(vs.monitor_slept_at(notify=True), 30*60):  # if not restarted within 20-30 minutes
             bot.send(random_list_item(GREETING_PHRASES))
         else:

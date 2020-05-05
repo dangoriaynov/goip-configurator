@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
+import threading
+
 from src.const import IP, USER, PASS, SIP, SIP_PASS
 from src.monitors import GoipMonitor, CallMonitor
 from src.utils import safe
@@ -9,8 +11,7 @@ from src.utils import safe
 def main():
     goip = GoipMonitor(IP, USER, PASS, SIP, SIP_PASS)
     cm = CallMonitor(goip)
-    goip.send_greenting()
-    cm.monitor()
+    threading.Thread(target=cm.monitor).start()
 
 
 if __name__ == '__main__':
