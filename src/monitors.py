@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding=utf-8
 import re
-import threading
 
 from src.db import vs
 from src.browser import BrowserWrapper, NotLoggedIn
@@ -114,11 +113,11 @@ class GoipMonitor:
             reset_daily_values()  # set default values for the daily status
         else:
             log.info("[GoipMonitor] Recent restart - do not reset daily calls duration.")
-        threading.Thread(target=CallMonitor(self).monitor).start()
         if passed_more_that_sec(vs.monitor_slept_at(notify=True), 30*60):  # if not restarted within 20-30 minutes
             bot.send(random_list_item(GREETING_PHRASES))
         else:
             log.info("[GoipMonitor] Regular restart - no greeting was sent")
+        CallMonitor(self).monitor()
 
     def init_browser(self, pwd=None):
         try:
