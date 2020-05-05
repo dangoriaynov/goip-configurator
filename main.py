@@ -8,8 +8,9 @@ from src.utils import safe
 @safe(msg="Я впав та не можу піднятись. Поможіть!")
 def main():
     goip = GoipMonitor(IP, USER, PASS, SIP, SIP_PASS)
-    CallMonitor(goip).monitor()
+    cm = CallMonitor(goip)
     goip.send_greenting()
+    cm.monitor()
 
 
 if __name__ == '__main__':
