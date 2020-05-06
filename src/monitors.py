@@ -165,7 +165,7 @@ class GoipMonitor:
         if voip == "401":
             log.error("[Statuses ok] Incorrect SIP username/password specified.")
             # try to fix fix-able issue only once per day as more attempts are often useless
-            if vs.last_date_error_notified().date() == current_time().date():
+            if vs.last_date_error_notified() and vs.last_date_error_notified().date() == current_time().date():
                 return True  # do not fix
             vs.set_last_date_error_notified(current_time())
             vs.set_last_reg_status("Помилка реєстрації VoIP. Невірний логін/пароль (код %s)" % voip)
