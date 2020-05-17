@@ -126,7 +126,7 @@ class ResetRestoreRequest(BaseRequest):
         log.info("[Personal bot] Fix requested")
 
     def process(self, goip):
-        return goip.fix()
+        return goip.reset_and_restore()
 
 
 class SendSmsRequest(BaseRequest):
