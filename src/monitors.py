@@ -28,7 +28,7 @@ def reset_daily_values(money=0.0):
 def daily_balance_diff(money=0.0):
     if not money:
         _, money, _, _ = balance()
-    diff = money - vs.current_balance()
+    diff = round(money - vs.current_balance(), 2)
     res = "+%s" % diff if diff > 0 else str(diff)
     return diff != 0, res
 
