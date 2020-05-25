@@ -15,12 +15,22 @@ from src.bot.common import bot
 from src.utils import retry, current_time, log, sleep
 
 
+def decode_msg(msg, encoding="utf-16be"):
+    try:
+        return msg.decode(encoding)
+    except UnicodeDecodeError as e:
+        log.error("Exception while decoding SMS message: ")
+        log.error(e)
+        log.error("SMS message contents: %s" % msg)
+
+
 def process_received_msg(pdu):
     frm = pdu.source_addr.decode()
-    content = pdu.short_message.decode("utf-16be")
-    if len(content) == 0:
+    content = decode_msg(pdu.short_message)
+    if not content or len(content) == 0:
         log.info("[Process Received SMS] Got long message. Using alternative logic")
-        content = pdu.message_payload.decode("utf-16be")
+        content = decode_msg(pdu.message_payload)
+    content = content or "<empty>"
     log.info("[Process Received SMS] Message from: %s, content: %s" % (frm, content))
     bot.send("Отримано СМС від %s\n%s" % (frm, content), escape=True)
 
