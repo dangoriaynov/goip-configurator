@@ -137,9 +137,9 @@ class GoipMonitor:
         talk_time_sec = vs.overall_call_duration()
         talk_str = seconds_to_time_str(talk_time_sec)
         BrowserWrapper.b.screenshot(name="before-reset", force=True)
-        if status:
-            status = "Дзвонилка <b>не фуричить</b>.\n%s\n" % status
-        bot.send("%sЗапущена вже %s\nНаговорили %s\nПереналаштовую..." % (status, up_str, talk_str))
+        add_status = "\n%s\n" % status if status != "UNDEFINED" else ""
+        bot.send("Дзвонилка <b>не фуричить</b>.%sЗапущена вже %s\nНаговорили %s\nПереналаштовую..." %
+                 (add_status, up_str, talk_str))
 
     def reset_and_restore(self):
         last_reg_status = vs.last_reg_status()
