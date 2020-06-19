@@ -11,7 +11,9 @@ from src.utils import safe
 def main():
     goip = GoipMonitor(IP, USER, PASS, SIP, SIP_PASS)
     cm = CallMonitor(goip)
-    threading.Thread(target=cm.monitor).start()
+    t = threading.Thread(target=cm.monitor, daemon=True)
+    t.start()
+    t.join()
 
 
 if __name__ == '__main__':
