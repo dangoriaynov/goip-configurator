@@ -108,7 +108,7 @@ class GoipMonitor:
         self.init_browser()
         self.init_sms()
         # if daily call duration is from today
-        if vs.daily_calls_duration(field="date").date() != current_date().date():
+        if vs.daily_calls_duration(field="date", default="1970-01-01 00:00:00.000").date() != current_date().date():
             vs.increase_weekly_call_duration(vs.daily_calls_duration())  # as we will reset this value
             reset_daily_values()  # set default values for the daily status
         else:
