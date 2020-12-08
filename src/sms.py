@@ -15,7 +15,7 @@ from src.bot.common import bot
 from src.utils import retry, current_time, log, sleep
 
 
-def decode_msg(msg, encoding="utf-16be"):
+def decode_msg(msg, encoding="utf-8"):
     try:
         return msg.decode(encoding)
     except UnicodeDecodeError as e:
