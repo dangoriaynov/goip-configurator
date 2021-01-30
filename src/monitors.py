@@ -232,6 +232,7 @@ class GoipMonitor:
         b.open_menu("Advance VoIP")
         b.set_select("sip_local_port_mode_select", "Fixed")
         b.set_select("sip_183_select", "SIP 180")
+        # maybe change 'Signaling SIP Port' == 5060 => 5065
         b.save()
         b.open_menu("Media")
         b.expand_items("Audio Codec Preference")
