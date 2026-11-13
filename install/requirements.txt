@@ -1,5 +1,5 @@
 selenium==3.141.0
 smpplib==2.0.1
 python-telegram-bot==12.6.1
-requests==2.22.0
+requests==2.31.0
 sqlite3worker==1.1.7
